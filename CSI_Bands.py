@@ -10,7 +10,7 @@ import pandas as pd
 import plotly.graph_objects as go
 
 st.image('csi-pacific-logo-reverse.png', width = 150)
-st.title("Band Ploy Fitting")
+st.title("Band Force-Length Calculator")
 
 
 
