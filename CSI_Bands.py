@@ -7,12 +7,11 @@ For the Band approximation using Numpy Poly fit
 import streamlit as st
 import numpy as np 
 import pandas as pd
+import plotly as plt
 import plotly.graph_objects as go
 
 st.image('csi-pacific-logo-reverse.png', width = 150)
-st.title("Band Force-Length Calculator")
-
-
+st.title("Band Force Fitting")
 
 band_select = st.selectbox("Select Band Brand",
 	('-- Select Data Type -- ', 'Rogue','Sorinex'))
@@ -22,14 +21,20 @@ if band_select == '-- Select Data Type -- ':
 
 if band_select == 'Rogue': 
 	col_select = st.selectbox('Select Colour',
-		('-- Select Colour --', 'Orange', 'Red', 'Green'))
-
+		('-- Select Colour --', 'Orange', 'Blue', 'Red', 'Green'))
+	data = pd.DataFrame()
 	if col_select == 'Orange':
-		data = [0.0502, 0.2957, 0.4382,0.6226,0.8006,1.0349,1.2176,1.4299,1.5946,1.7849,1.9316,2.0999,2.2286,2.3749,2.4856,2.6099,2.7026,2.8049,2.8796]
+		data['Force'] = [4.5, 4.9, 5.4, 5.8, 6.1]
+		data['Length (cm)'] = [182, 193, 206, 226, 232]
 	if col_select == 'Red':
-		data = [1.4712,2.1037,2.476,2.964,3.4424,4.084525,4.5964,5.205525,5.6904,6.266525,6.7244,7.267525,7.6984,8.208525,8.6124,9.089525,9.4664,9.910525,10.2604]
+		data['Force'] = [8.3,10.2,11.8,13,15]
+		data['Length (cm)'] = [178,206,226,243,265]
 	if col_select == 'Green':
-		data = [3.1888,4.4563,5.2,6.172,7.1216,8.390725,9.3976,10.589725,11.5336,12.648725,13.5296,14.567725,15.3856,16.346725,17.1016,17.985725,18.6776,19.484725,20.1136]
+		data['Force'] = [16.7,18.6,21.4,22.9,26.4]
+		data['Length (cm)'] = [177,189,208,217,237]
+	
+	fit = np.polyfit(data['Length (cm)'],data['Force'],2)
+	fit = pd.DataFrame(fit)
 
 if band_select == 'Sorinex': 
 	col_select = st.selectbox('Select Colour',
@@ -44,10 +49,12 @@ if band_select == 'Sorinex':
 	if col_select == 'Green':
 		data = [2.8756,5.3221,6.754,8.6212,10.4404,12.863425,14.7784,17.036425,18.8164,20.909425,22.5544,24.482425,25.9924,27.755425,29.1304,30.728425,31.9684,33.401425,34.5064]
 
-length = [102,107,110,114,118,123.5,128,133.5,138,143.5,148,153.5,158,163.5,168,173.5,178,183.5,188]
+	length = [102,107,110,114,118,123.5,128,133.5,138,143.5,148,153.5,158,163.5,168,173.5,178,183.5,188]
 
-fit = np.polyfit(length,data,2)
-fit = pd.DataFrame(fit)
+	fit = np.polyfit(length,data,2)
+	fit = pd.DataFrame(fit)
+
+
 
 fit_x = []
 for i in range(250):
