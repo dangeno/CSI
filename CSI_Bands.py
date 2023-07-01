@@ -26,16 +26,16 @@ if band_select == 'Rogue':
 	data = pd.DataFrame()
 	if col_select == 'Orange':
 		data['Force'] = [4.5, 4.9, 5.4, 5.8, 6.1]
-		data['Length (cm)'] = [182, 193, 206, 226, 232]
+		data['Length (cm)'] = [172, 183, 196, 216, 222]
 	if col_select == 'Red':
 		data['Force'] = [8.3,10.2,11.8,13,15]
-		data['Length (cm)'] = [178,206,226,243,265]
+		data['Length (cm)'] = [168,196,216,233,255]
 	if col_select == 'Green':
 		data['Force'] = [16.7,18.6,21.4,22.9,26.4]
-		data['Length (cm)'] = [177,189,208,217,237]
+		data['Length (cm)'] = [167,179,198,207,227]
 	if col_select == 'Blue':
 		data['Force'] = [9.2,11.3,12.6,13.7,15.4]
-		data['Length (cm)'] = [169,191,204,217,235]
+		data['Length (cm)'] = [159,181,194,207,225]
 	
 	fit = np.polyfit(data['Length (cm)'],data['Force'],2)
 	fit = pd.DataFrame(fit)
