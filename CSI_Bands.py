@@ -77,7 +77,7 @@ with col1:
 	band_length = st.number_input("Length Input", min_value = 0)
 with col3: 
 	if band_length is not 0: 
-		st.metric('Force at Given Length (N)', round(fit_y[band_length],2))
+		st.metric('Force at Given Length (N)', round(fit_y[band_length]*9.81,2))
 	else: 
 		st.subheader('Enter Length')
 		
