@@ -74,7 +74,11 @@ fit_y = fit_x**2 *fit[0][0] + fit_x*fit[0][1] + fit[0][2]
 
 col1, col2, col3 = st.columns(3)
 with col1:
-	band_length = st.number_input("Length Input", min_value = 0)
+	band_length = st.number_input("Length Input (cm)", min_value = 0)
+with col2: 
+	if band_length is not 0: 
+		st.metric('Force at Given Length (Kg)', round(fit_y[band_length],2))
+
 with col3: 
 	if band_length is not 0: 
 		st.metric('Force at Given Length (N)', round(fit_y[band_length]*9.81,2))
